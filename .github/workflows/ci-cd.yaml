@@ -56,4 +56,4 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push mi-usuario-dockerhub/${{ matrix.service }}-microservice:${{ github.sha }}
+          docker push gomezdeltoroagustin/${{ matrix.service }}-microservice:${{ github.sha }}
