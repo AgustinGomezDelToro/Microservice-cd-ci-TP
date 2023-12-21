@@ -46,3 +46,7 @@ jobs:
       - name: Apply Kubernetes files
         run: |
           kubectl set image deployment/${{ matrix.service }}-deployment ${{ matrix.service }}=gomezdeltoroagustin/${{ matrix.service }}-microservice:${{ github.sha }} -n microservices
+
+      - name: Set up kubectl
+        run: |
+          echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > $HOME/.kube/config
