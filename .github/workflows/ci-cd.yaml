@@ -43,10 +43,10 @@ jobs:
           chmod +x ./kubectl
           sudo mv ./kubectl /usr/local/bin/kubectl
 
-      - name: Apply Kubernetes files
-        run: |
-          kubectl set image deployment/${{ matrix.service }}-deployment ${{ matrix.service }}=gomezdeltoroagustin/${{ matrix.service }}-microservice:${{ github.sha }} -n microservices
-
-      - name: Set up kubectl
+      - name: Set up KUBE_CONFIG
         run: |
           echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > $HOME/.kube/config
+
+      - name: Apply Kubernetes files
+        run: |
+          kubectl set image deployment/${{ matrix.service }}-deployment ${{ matrix.service }}=gomezdeltoroagustin/${{ matrix.service }}-microservice:${{ github.sha }} -n microservices                   kubectl set image deployment/${{ matrix.service }}-deployment ${{ matrix.service }}=gomezdeltoroagustin/${{ matrix.service }}-microservice:${{ github.sha }} -n microservices
